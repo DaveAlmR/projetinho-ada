@@ -2,6 +2,7 @@ package org.atividade.resource;
 
 
 import org.atividade.dto.playlist.PlaylistDto;
+import org.atividade.dto.playlist.PlaylistMusicaDto;
 import org.atividade.dto.playlist.PlaylistPostDto;
 import org.atividade.factory.DtoFactory;
 import org.atividade.model.Playlist;
@@ -83,7 +84,7 @@ public class PlaylistResource {
     )
     @Path("/adiconarMusica")
     @Operation(summary = "Adiciona uma musica de uma playlist.", description = "Adiciona uma musica de uma playlist.")
-    public Response adicionarMusica(@Valid String playlistUid, String musicaUid) {
+    public Response adicionarMusica(@RequestBody PlaylistMusicaDto playlistMusicaDto) {
         try {
             operationService.adicionaMusica(musicaUid, playlistUid);
             return Response.status(Response.Status.OK).build();
@@ -115,7 +116,7 @@ public class PlaylistResource {
     )
     @Operation(summary = "Remove uma musica de uma playlist.", description = "Remove uma musica de uma playlist.")
     @Path("/removerMusica")
-    public Response removerMusica(@Valid String playlistUid, String musicaUid) {
+    public Response removerMusica(@RequestBody PlaylistMusicaDto playlistMusicaDto) {
             try {
                 operationService.removeMusica(musicaUid, playlistUid);
                 return Response.status(Response.Status.OK).build();
