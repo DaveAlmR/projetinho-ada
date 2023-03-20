@@ -38,7 +38,7 @@ public class PlaylistService {
     @Transactional
     public Playlist removerMusica(Musica musica, String uuid) {
         Playlist playlist = this.getByUUID(uuid);
-        playlist.getMusicas().remove(musica);
+        playlist.getMusicas().removeIf(m->m.getId().equals(musica.getId()));
         playlistRepository.persist(playlist);
         return playlist;
     }
